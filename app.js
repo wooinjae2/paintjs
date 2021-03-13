@@ -4,10 +4,11 @@ const mode = document.getElementById('jsMode');
 const saveBtn = document.getElementById('jsSave');
 const ctx = canvas.getContext('2d');
 
-console.log(mode);
+// console.log(mode);
 canvas.width = 700;
 canvas.height = 700;
-canvas.fillStyle = "white";
+ctx.fillStyle = 'white';
+ctx.fillRect(0,0,700, 700);
 let fillMode = false;
 
 mode.addEventListener('click', () =>{
@@ -54,7 +55,7 @@ function onMouseMove(e) {
   //offsetX offsetY는 캔버스 안에서의 좌표
   const x = e.offsetX;
   const y = e.offsetY;
-  console.log(painting)
+  // console.log(painting)
   if (!painting) {
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -75,7 +76,7 @@ function onMouseUp(e) {
 
 
 function onMouseLeave() {
-  console.log('onMouseLeave');
+  // console.log('onMouseLeave');
   stopPainting();
 }
 
@@ -86,7 +87,7 @@ function onContextMenu(e){
 
 function handleSaveClick(e){
   const canvasData = canvas.toDataURL('image/jpeg');
-  console.log(canvasData)
+  // console.log(canvasData)
   const link = document.createElement('a')
   link.href = canvasData;
   link.download = "PaintJS[EXPORT]";
