@@ -1,12 +1,13 @@
 const canvas = document.getElementById('jsCanvas');
 const range = document.getElementById('jsRange');
 const mode = document.getElementById('jsMode');
+const saveBtn = document.getElementById('jsSave');
 const ctx = canvas.getContext('2d');
 
 console.log(mode);
 canvas.width = 700;
 canvas.height = 700;
-canvas.fillStyle = "#2c2c2c";
+canvas.fillStyle = "white";
 let fillMode = false;
 
 mode.addEventListener('click', () =>{
@@ -80,7 +81,16 @@ function onMouseLeave() {
 
 function onContextMenu(e){
   e.preventDefault();
-  
+
+}
+
+function handleSaveClick(e){
+  const canvasData = canvas.toDataURL('image/jpeg');
+  console.log(canvasData)
+  const link = document.createElement('a')
+  link.href = canvasData;
+  link.download = "PaintJS[EXPORT]";
+  link.click();
 }
 
 if (canvas) {
@@ -95,6 +105,10 @@ if (range) {
   range.addEventListener('change', (e) => {
     ctx.lineWidth = e.target.value;
   })
+}
+
+if(saveBtn){
+  saveBtn.addEventListener('click', handleSaveClick)
 }
 
 init();
